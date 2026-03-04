@@ -148,6 +148,20 @@
 - **Workflow update:** `planning/workflow.csv` row for TPA-018 updated with DONE state, completion timestamp, and concise delivery notes.
 - **Notes:** Promotion planning package now covers positioning/audiences, channel strategy (arcade/social/communities), prelaunch-launch-post calendar, trailer+screenshot checklists, KPI targets/tracking cadence, and explicit link-share guidance for Joe at release readiness.
 
+## Overnight readiness QA update
+
+- **Timestamp:** Wed 2026-03-04 01:21 PST
+- **Scope:** Overnight Unity open-and-play readiness pass for `/Users/joe/dev/TankPuzzleAssult` (L1/L2/L3 scenes).
+- **Result:** **NOT READY (FAIL)**
+  - Batch open/compile smoke fails with script error:
+    - `Assets/Scripts/UI/ObjectiveHUDController.cs(28,13): CS0103 'LevelManager' does not exist`
+  - L1/L2/L3 scene assets are present and listed in Build Settings, but Play validation is blocked by compile gate.
+  - Additional readiness gaps identified: objective components not wired in L1–L3 scenes, enemy prefab lacks AI/damage receiver wiring.
+- **New artifacts:**
+  - `planning/morning-readiness-check-2026-03-04.md`
+  - `docs/qa/unity-open-and-play-smoke.md`
+- **Morning instruction:** Start with Unity Console compile triage (`ObjectiveHUDController.cs` line 28), then execute L1→L3 smoke script once compile is clean.
+
 ## Post-midnight execution update
 
 - **Timestamp:** Wed 2026-03-04 01:20 PST
