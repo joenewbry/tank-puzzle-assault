@@ -4,10 +4,11 @@ using LegacyDestructibleObject = Gameplay.Legacy.DestructibleObject;
 
 namespace TankPuzzleAssault.Combat
 {
-    public class ProjectileDamageReceiver : MonoBehaviour, IProjectileDamageable
+    public class ProjectileDamageReceiver : MonoBehaviour, IProjectileDamageable, IProjectileTeamProvider
     {
         [Header("Routing")]
         [SerializeField] private ProjectileTargetKind targetKind = ProjectileTargetKind.Unknown;
+        [SerializeField] private int teamId = 0;
         [SerializeField] private EnemyTankAI enemyTarget;
         [SerializeField] private BossTankController bossTarget;
         [SerializeField] private CoreDestructibleObject destructibleTarget;
@@ -21,6 +22,7 @@ namespace TankPuzzleAssault.Combat
         private bool isDead;
 
         public ProjectileTargetKind TargetKind => targetKind;
+        public int TeamId => teamId;
         public bool IsAlive => !isDead;
 
         private void Awake()

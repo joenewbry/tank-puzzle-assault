@@ -13,6 +13,7 @@ Unify projectile hit handling across **player**, **enemy**, and **block/destruct
     - `IProjectileDamageable`
     - `IProjectileShield`
     - `IProjectileDamageModifier`
+    - `IProjectileTeamProvider`
 - `ProjectileHitResolver.cs`
   - Centralized hit resolution flow:
     1. collect projectile/instigator/target damage modifiers
@@ -21,6 +22,7 @@ Unify projectile hit handling across **player**, **enemy**, and **block/destruct
     4. apply final damage to unified receiver
 - `ProjectileController.cs`
   - Single collision entrypoint (`OnCollisionEnter`/`OnTriggerEnter`) that routes through resolver
+  - Optional friendly-fire guard via team-aware routing (`IProjectileTeamProvider`)
 - `ProjectileDamageReceiver.cs`
   - Unified receiver for player/enemy/block
   - Supports forwarding to:

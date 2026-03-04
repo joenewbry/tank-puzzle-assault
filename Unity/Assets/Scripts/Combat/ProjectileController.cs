@@ -7,6 +7,7 @@ namespace TankPuzzleAssault.Combat
     {
         [SerializeField] private float baseDamage = 20f;
         [SerializeField] private bool consumeOnHit = true;
+        [SerializeField] private bool allowFriendlyFire = false;
         [SerializeField] private float lifeSeconds = 8f;
         [SerializeField] private GameObject instigator;
 
@@ -63,6 +64,11 @@ namespace TankPuzzleAssault.Combat
             var damageableBehaviour = damageable as MonoBehaviour;
             var targetRoot = damageableBehaviour != null ? damageableBehaviour.gameObject : other.transform.root.gameObject;
 
+            if (!allowFriendlyFire && IsFriendlyFire(targetRoot))
+            {
+                return;
+            }
+
             var context = new ProjectileHitContext(
                 instigator,
                 gameObject,
@@ -79,6 +85,38 @@ namespace TankPuzzleAssault.Combat
                 consumed = true;
                 Destroy(gameObject);
             }
+        }
+
+        private bool IsFriendlyFire(GameObject targetRoot)
+        {
+            if (instigator == null || targetRoot == null)
+            {
+                return false;
+            }
+
+            int instigatorTeam = FindTeamId(instigator.transform);
+            int targetTeam = FindTeamId(targetRoot.transform);
+
+            return instigatorTeam >= 0 && targetTeam >= 0 && instigatorTeam == targetTeam;
+        }
+
+        private static int FindTeamId(Transform transformRoot)
+        {
+            if (transformRoot == null)
+            {
+                return -1;
+            }
+
+            var behaviours = transformRoot.GetComponentsInParent<MonoBehaviour>();
+            for (int i = 0; i < behaviours.Length; i++)
+            {
+                if (behaviours[i] is IProjectileTeamProvider provider)
+                {
+                    return provider.TeamId;
+                }
+            }
+
+            return -1;
         }
 
         private static IProjectileDamageable FindDamageable(Transform transformRoot)
