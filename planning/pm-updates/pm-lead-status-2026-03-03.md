@@ -117,3 +117,14 @@
   - `planning/release-checklist.md`
 - **Workflow update:** `planning/workflow.csv` row for TPA-020 updated with DONE state and completion timestamp.
 - **Notes:** Release PR/merge policy baseline is now documented for gate execution and downstream launch prep alignment.
+
+## TPA-019 comms update
+
+- **Timestamp:** Tue 2026-03-03 22:57 PST
+- **Task:** TPA-019 (Comms package)
+- **Status change:** TODO → DONE
+- **Completed artifacts:**
+  - `docs/comms/email-templates.md`
+  - `docs/comms/status-brief-for-joe.md`
+- **Workflow update:** `planning/workflow.csv` row for TPA-019 updated with DONE state and completion timestamp.
+- **Notes:** Comms package now includes polished milestone/demo/promotion/launch email drafts plus a concise manager-facing status brief template.
