@@ -1,4 +1,5 @@
-// ProjectileArcSolver.cs
+using System.Collections.Generic;
+using UnityEngine;
 
 public interface IProjectileArcSolver {
     Vector3 CalculateArc(Vector3 start, Vector3 target, float initialSpeed);

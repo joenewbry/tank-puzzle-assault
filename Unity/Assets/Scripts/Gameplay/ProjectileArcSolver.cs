@@ -1,49 +1,69 @@
-using System;
+using System.Collections.Generic;
 using UnityEngine;
 
-public class ProjectileArcSolver {
-    public Vector3 CalculateTrajectory(Vector3 launchPosition, Vector3 targetPosition, float launchSpeed, float gravity = -9.81f) {
-        Vector3 delta = targetPosition - launchPosition;
-        float horizontalDistance = new Vector2(delta.x, delta.z).magnitude;
-        float verticalDistance = delta.y;
+public class ProjectileArcSolver : IProjectileArcSolver {
+    public Vector3 CalculateArc(Vector3 start, Vector3 target, float initialSpeed) {
+        Vector3 delta = target - start;
+        Vector3 deltaXZ = new Vector3(delta.x, 0f, delta.z);
+        float horizontalDistance = deltaXZ.magnitude;
 
-        float a = (gravity * horizontalDistance * horizontalDistance) / (2 * launchSpeed * launchSpeed);
-        float b = horizontalDistance;
-        float c = a + verticalDistance;
-
-        // Solve quadratic: ax^2 + bx + c = 0
-        float discriminant = b * b - 4 * a * c;
-        if (discriminant < 0) return Vector3.zero; // No solution
-
-        float sqrtDiscriminant = Mathf.Sqrt(discriminant);
-        float tanTheta1 = (-b + sqrtDiscriminant) / (2 * a);
-        float tanTheta2 = (-b - sqrtDiscriminant) / (2 * a);
-
-        // Use the lower angle
-        float theta = Mathf.Atan(tanTheta1);
-        float directionX = Mathf.Cos(theta);
-        float directionZ = Mathf.Sin(theta);
-
-        return new Vector3(directionX, Mathf.Sin(theta), directionZ).normalized * launchSpeed;
-    }
-
-    public Vector3 CalculateImpactPoint(Vector3 launchPosition, Vector3 velocity, float gravity = -9.81f) {
-        // Simple parabolic trajectory with gravity
-        // This is a placeholder for a full physics simulation
-        Vector3 position = launchPosition;
-        Vector3 currentVelocity = velocity;
-        float timeStep = 0.1f;
-        float totalTime = 0f;
-
-        while (position.y >= 0) {
-            position += currentVelocity * timeStep;
-            currentVelocity += new Vector3(0, gravity * timeStep, 0);
-            totalTime += timeStep;
-
-            // Limit to avoid infinite loops
-            if (totalTime > 10f) break;
+        if (horizontalDistance < 0.001f || initialSpeed <= 0f) {
+            return Vector3.zero;
         }
 
-        return position;
+        float gravity = Mathf.Abs(Physics.gravity.y);
+        float speed2 = initialSpeed * initialSpeed;
+        float speed4 = speed2 * speed2;
+        float y = delta.y;
+
+        float discriminant = speed4 - gravity * (gravity * horizontalDistance * horizontalDistance + 2f * y * speed2);
+        if (discriminant < 0f) {
+            return Vector3.zero;
+        }
+
+        float sqrt = Mathf.Sqrt(discriminant);
+        float angle = Mathf.Atan((speed2 - sqrt) / (gravity * horizontalDistance)); // lower arc
+
+        Vector3 horizontalDirection = deltaXZ / horizontalDistance;
+        Vector3 velocity = horizontalDirection * (Mathf.Cos(angle) * initialSpeed);
+        velocity.y = Mathf.Sin(angle) * initialSpeed;
+
+        return velocity;
+    }
+
+    public bool IsValidLaunch(Vector3 start, Vector3 target, float initialSpeed, float gravity) {
+        if (initialSpeed <= 0f) {
+            return false;
+        }
+
+        Vector3 delta = target - start;
+        float horizontalDistance = new Vector2(delta.x, delta.z).magnitude;
+        float speed2 = initialSpeed * initialSpeed;
+        float speed4 = speed2 * speed2;
+        float g = Mathf.Abs(gravity);
+        float discriminant = speed4 - g * (g * horizontalDistance * horizontalDistance + 2f * delta.y * speed2);
+        return discriminant >= 0f;
+    }
+
+    public List<Vector3> GeneratePathPoints(Vector3 start, Vector3 target, float initialSpeed, int segments) {
+        int clampedSegments = Mathf.Max(1, segments);
+        List<Vector3> points = new List<Vector3>(clampedSegments + 1);
+
+        Vector3 velocity = CalculateArc(start, target, initialSpeed);
+        if (velocity == Vector3.zero) {
+            points.Add(start);
+            return points;
+        }
+
+        float maxTime = Mathf.Max(0.1f, Vector3.Distance(start, target) / Mathf.Max(0.1f, new Vector2(velocity.x, velocity.z).magnitude));
+        float step = maxTime / clampedSegments;
+
+        for (int i = 0; i <= clampedSegments; i++) {
+            float t = step * i;
+            Vector3 point = start + velocity * t + 0.5f * Physics.gravity * t * t;
+            points.Add(point);
+        }
+
+        return points;
     }
 }

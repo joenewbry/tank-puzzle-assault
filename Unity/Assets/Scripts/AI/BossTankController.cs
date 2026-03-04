@@ -15,7 +15,8 @@ public class BossTankController : MonoBehaviour {
     public float healthThresholdPhase2 = 0.4f;  // 40% health
     public float healthThresholdPhase3 = 0.1f;  // 10% health
     
-    public float maxHealth;
+    [Header("Health Configuration")]
+    public float maxHealth = 100f;
     private float currentHealth;
     
     public float phaseDuration = 15f;  // Time between phase transitions
@@ -38,16 +39,30 @@ public class BossTankController : MonoBehaviour {
     public string[] phaseVisualEffects;
     
     void Start() {
+        // Guard: ensure maxHealth > 0
+        if (maxHealth <= 0) {
+            Debug.LogError("BossTankController: maxHealth must be greater than 0!");
+            maxHealth = 100f;
+        }
         currentHealth = maxHealth;
         phaseStartTime = Time.time;
         
-        if (enemyAI != null) {
+        // Guard: validate enemyAI reference
+        if (enemyAI == null) {
+            Debug.LogError("BossTankController: enemyAI reference is null! Cannot apply behaviors.");
+            return;
+        }
+        
+        if (bossConfig != null) {
             enemyAI.moveSpeed = bossConfig.moveSpeed;
             enemyAI.attackCooldown = bossConfig.attackCooldown;
         }
     }
     
     void Update() {
+        // Guard: ensure enemyAI is still valid
+        if (enemyAI == null) return;
+        
         UpdateHealthPhase();
         UpdatePhaseTiming();
     }
@@ -136,6 +151,8 @@ public class BossTankController : MonoBehaviour {
     }
     
     public void TakeDamage(float damage) {
+        if (maxHealth <= 0 || enemyAI == null) return;
+        
         currentHealth -= damage;
         if (currentHealth <= 0) {
             currentHealth = 0;

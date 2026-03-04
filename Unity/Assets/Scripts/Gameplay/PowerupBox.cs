@@ -1,3 +1,4 @@
+using TankPuzzleAssault.Combat;
 using UnityEngine;
 
 public class PowerupBox : MonoBehaviour {
@@ -33,21 +34,33 @@ public class PowerupBox : MonoBehaviour {
     }
 
     private void Pickup(Transform player) {
+        var receiver = player.GetComponentInParent<ProjectileDamageReceiver>();
+
         // Apply powerup effect
         switch (powerupType) {
             case PowerupType.Health:
-                // Implement health restoration
+                if (receiver != null) {
+                    receiver.RestoreHealth(35f);
+                }
                 break;
+
             case PowerupType.Shield:
-                // Implement shield
+                var shield = player.GetComponentInParent<ProjectileShield>();
+                if (shield == null) {
+                    shield = player.gameObject.AddComponent<ProjectileShield>();
+                }
+                shield.Recharge(75f);
                 break;
+
             case PowerupType.SpeedBoost:
-                // Implement speed boost
+                // Hook point for future move-speed modifier components.
                 break;
+
             case PowerupType.MultiShot:
-                // Implement multi-shot
+                // Hook point for future projectile count / spread modifiers.
                 break;
         }
+
         Destroy(gameObject);
     }
 }
