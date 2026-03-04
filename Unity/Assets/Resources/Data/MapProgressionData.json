@@ -1,0 +1,221 @@
+{
+  "maps": [
+    {
+      "mapId": "map_01",
+      "name": "Training Grounds",
+      "description": "Introductory level with basic enemies and simple layout.",
+      "waveCount": 5,
+      "nodeProgression": [
+        {
+          "nodeId": "node_01",
+          "enemies": [
+            {
+              "variant": "basic_tank",
+              "count": 3,
+              "spawnDelay": 2.0
+            }
+          ],
+          "spawnTime": 0.0,
+          "requiredProgress": 0
+        },
+        {
+          "nodeId": "node_02",
+          "enemies": [
+            {
+              "variant": "basic_tank",
+              "count": 5,
+              "spawnDelay": 1.5
+            },
+            {
+              "variant": "fast_tank",
+              "count": 2,
+              "spawnDelay": 3.0
+            }
+          ],
+          "spawnTime": 30.0,
+          "requiredProgress": 1
+        },
+        {
+          "nodeId": "node_03",
+          "enemies": [
+            {
+              "variant": "basic_tank",
+              "count": 4,
+              "spawnDelay": 1.0
+            },
+            {
+              "variant": "fast_tank",
+              "count": 3,
+              "spawnDelay": 2.0
+            },
+            {
+              "variant": "armored_tank",
+              "count": 1,
+              "spawnDelay": 4.0
+            }
+          ],
+          "spawnTime": 60.0,
+          "requiredProgress": 2
+        }
+      ],
+      "boss": {
+        "variant": "boss_tank_phase1",
+        "spawnWave": 5,
+        "health": 1500
+      }
+    },
+    {
+      "mapId": "map_02",
+      "name": "Industrial Complex",
+      "description": "Medium difficulty with tighter corridors and environmental hazards.",
+      "waveCount": 8,
+      "nodeProgression": [
+        {
+          "nodeId": "node_01",
+          "enemies": [
+            {
+              "variant": "fast_tank",
+              "count": 4,
+              "spawnDelay": 1.5
+            },
+            {
+              "variant": "armored_tank",
+              "count": 2,
+              "spawnDelay": 2.5
+            }
+          ],
+          "spawnTime": 0.0,
+          "requiredProgress": 0
+        },
+        {
+          "nodeId": "node_02",
+          "enemies": [
+            {
+              "variant": "fast_tank",
+              "count": 5,
+              "spawnDelay": 1.0
+            },
+            {
+              "variant": "armored_tank",
+              "count": 3,
+              "spawnDelay": 2.0
+            },
+            {
+              "variant": "basic_tank",
+              "count": 2,
+              "spawnDelay": 3.0
+            }
+          ],
+          "spawnTime": 40.0,
+          "requiredProgress": 1
+        },
+        {
+          "nodeId": "node_03",
+          "enemies": [
+            {
+              "variant": "armored_tank",
+              "count": 4,
+              "spawnDelay": 1.0
+            },
+            {
+              "variant": "fast_tank",
+              "count": 6,
+              "spawnDelay": 1.2
+            },
+            {
+              "variant": "shielded_tank",
+              "count": 1,
+              "spawnDelay": 5.0
+            }
+          ],
+          "spawnTime": 80.0,
+          "requiredProgress": 2
+        }
+      ],
+      "boss": {
+        "variant": "boss_tank_phase2",
+        "spawnWave": 8,
+        "health": 3000
+      }
+    },
+    {
+      "mapId": "map_03",
+      "name": "Core Reactor",
+      "description": "Final level with advanced enemy variants and complex boss mechanics.",
+      "waveCount": 12,
+      "nodeProgression": [
+        {
+          "nodeId": "node_01",
+          "enemies": [
+            {
+              "variant": "shielded_tank",
+              "count": 3,
+              "spawnDelay": 2.0
+            },
+            {
+              "variant": "aoe_tank",
+              "count": 2,
+              "spawnDelay": 3.0
+            }
+          ],
+          "spawnTime": 0.0,
+          "requiredProgress": 0
+        },
+        {
+          "nodeId": "node_02",
+          "enemies": [
+            {
+              "variant": "shielded_tank",
+              "count": 4,
+              "spawnDelay": 1.5
+            },
+            {
+              "variant": "aoe_tank",
+              "count": 3,
+              "spawnDelay": 2.0
+            },
+            {
+              "variant": "dash_tank",
+              "count": 2,
+              "spawnDelay": 4.0
+            }
+          ],
+          "spawnTime": 50.0,
+          "requiredProgress": 1
+        },
+        {
+          "nodeId": "node_03",
+          "enemies": [
+            {
+              "variant": "dash_tank",
+              "count": 5,
+              "spawnDelay": 1.0
+            },
+            {
+              "variant": "aoe_tank",
+              "count": 4,
+              "spawnDelay": 1.2
+            },
+            {
+              "variant": "shielded_tank",
+              "count": 3,
+              "spawnDelay": 2.5
+            },
+            {
+              "variant": "boss_tank_phase3",
+              "count": 1,
+              "spawnDelay": 60.0
+            }
+          ],
+          "spawnTime": 120.0,
+          "requiredProgress": 2
+        }
+      ],
+      "boss": {
+        "variant": "boss_tank_phase3",
+        "spawnWave": 12,
+        "health": 6000
+      }
+    }
+  ]
+}
