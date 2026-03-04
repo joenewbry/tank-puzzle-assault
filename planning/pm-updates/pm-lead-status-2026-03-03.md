@@ -128,3 +128,13 @@
   - `docs/comms/status-brief-for-joe.md`
 - **Workflow update:** `planning/workflow.csv` row for TPA-019 updated with DONE state and completion timestamp.
 - **Notes:** Comms package now includes polished milestone/demo/promotion/launch email drafts plus a concise manager-facing status brief template.
+
+## TPA-018 promotion update
+
+- **Timestamp:** Tue 2026-03-03 22:56 PST
+- **Task:** TPA-018 (Promotion plan)
+- **Status change:** TODO → DONE
+- **Completed artifact:**
+  - `docs/launch/promotion-plan.md`
+- **Workflow update:** `planning/workflow.csv` row for TPA-018 updated with DONE state, completion timestamp, and concise delivery notes.
+- **Notes:** Promotion planning package now covers positioning/audiences, channel strategy (arcade/social/communities), prelaunch-launch-post calendar, trailer+screenshot checklists, KPI targets/tracking cadence, and explicit link-share guidance for Joe at release readiness.
