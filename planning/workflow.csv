@@ -3,7 +3,7 @@ TPA-001,Project Setup,GM,arcade-gm,openai-codex/gpt-5.3-codex,DONE,P0,,Repo scaf
 TPA-002,Architecture,Architect Candidate A,tech-architect,openai-codex/gpt-5.3-codex,DONE,P0,TPA-001,docs/architecture/architect-a.md,Multiplayer + Unity + cross-platform proposal,2026-03-03 15:43 PST
 TPA-003,Architecture,Architect Candidate B,arcade-agent-01,openai-codex/gpt-5.3-codex,DONE,P0,TPA-001,docs/architecture/architect-b.md,Alternative architecture proposal,2026-03-03 15:42:50 PST
 TPA-004,Architecture,Architect Candidate C,arcade-agent-02,openai-codex/gpt-5.3-codex,DONE,P0,TPA-001,docs/architecture/architect-c.md,Alternative architecture proposal,2026-03-03T15:42:54-0800
-TPA-005,Architecture Review,PM Reviewer,arcade-agent-03,openai-codex/gpt-5.3-codex,TODO,P0,TPA-002|TPA-003|TPA-004,docs/architecture/selection.md,Select best architecture and rationale (architecture selection gate),
+TPA-005,Architecture Review,PM Reviewer,arcade-agent-03,openai-codex/gpt-5.3-codex,DONE,P0,TPA-002|TPA-003|TPA-004,docs/architecture/selection.md,Winner: A (architecture selected for v1),2026-03-03T16:10:11-08:00
 TPA-006,Game Design,Design Team,game-designer-miyamoto,openai-codex/gpt-5.3-codex,DONE,P0,TPA-001,docs/design/game-design-core.md,Puzzle gameplay loop + controls,2026-03-03T15:43:02-0800
 TPA-007,Game Design,Design Team,game-designer-ikeda,openai-codex/gpt-5.3-codex,DONE,P0,TPA-001,docs/design/level-difficulty.md,3-map difficulty + progression,2026-03-03T15:43:10-0800
 TPA-008,Game Design,Design Team,game-designer-okamoto,openai-codex/gpt-5.3-codex,DONE,P1,TPA-001,docs/design/scoring-replayability.md,Arcade scoring + replay hooks,2026-03-03T15:43:10-0800
