@@ -104,3 +104,16 @@
 4. Next checkpoint time + owner
 
 **Target outcome:** no critical-path task should go silent for >45 minutes during active execution.
+
+---
+
+## TPA-020 completion update
+
+- **Timestamp:** Tue 2026-03-03 22:32 PST
+- **Task:** TPA-020 (GitHub release process)
+- **Status change:** TODO → DONE
+- **Completed artifacts:**
+  - `docs/release/github-pr-merge-policy.md`
+  - `planning/release-checklist.md`
+- **Workflow update:** `planning/workflow.csv` row for TPA-020 updated with DONE state and completion timestamp.
+- **Notes:** Release PR/merge policy baseline is now documented for gate execution and downstream launch prep alignment.
