@@ -7,7 +7,7 @@ TPA-005,Architecture Review,PM Reviewer,arcade-agent-03,openai-codex/gpt-5.3-cod
 TPA-006,Game Design,Design Team,game-designer-miyamoto,openai-codex/gpt-5.3-codex,DONE,P0,TPA-001,docs/design/game-design-core.md,Puzzle gameplay loop + controls,2026-03-03T15:43:02-0800
 TPA-007,Game Design,Design Team,game-designer-ikeda,openai-codex/gpt-5.3-codex,DONE,P0,TPA-001,docs/design/level-difficulty.md,3-map difficulty + progression,2026-03-03T15:43:10-0800
 TPA-008,Game Design,Design Team,game-designer-okamoto,openai-codex/gpt-5.3-codex,DONE,P1,TPA-001,docs/design/scoring-replayability.md,Arcade scoring + replay hooks,2026-03-03T15:43:10-0800
-TPA-021,PM Triage,PM Lead,arcade-pm,openai-codex/gpt-5.3-codex,DONE,P0,TPA-005|TPA-006|TPA-007|TPA-008,planning/triage-summary.md,"v1 scope lock complete; triage summary includes scope tiers, schedule, deps, acceptance criteria",2026-03-03T16:12:35-08:00
+TPA-021,PM Triage,PM Lead,arcade-pm,openai-codex/gpt-5.3-codex,DONE,P0,TPA-005|TPA-006|TPA-007|TPA-008,planning/triage-summary.md,Scope lock complete; triage summary published (v1 scope/schedule/dependencies/acceptance).,2026-03-03T16:14:13-08:00
 TPA-009,Ticketing,PM 1,arcade-pm,openai-codex/gpt-5.3-codex,DONE,P0,TPA-021,planning/tickets_pm1.csv,PM1 ticket backlog created from PRD + Architecture A selection (triage summary not yet present),2026-03-03T16:12:32-0800
 TPA-010,Ticketing,PM 2,arcade-agent-04,openai-codex/gpt-5.3-codex,DONE,P1,TPA-021,planning/tickets_pm2.csv,Parallel PM proposal,2026-03-03T16:13:41-08:00
 TPA-011,Ticketing,PM 3,arcade-agent-05,openai-codex/gpt-5.3-codex,DONE,P1,TPA-021,planning/tickets_pm3.csv,Parallel PM proposal (vertical-slice-first + hardening),2026-03-03T16:11:50-0800
