@@ -118,6 +118,15 @@
 - **Workflow update:** `planning/workflow.csv` row for TPA-020 updated with DONE state and completion timestamp.
 - **Notes:** Release PR/merge policy baseline is now documented for gate execution and downstream launch prep alignment.
 
+## TPA-023 validation update
+
+- **Timestamp:** Tue 2026-03-03 22:57 PST
+- **Status change:** TPA-023 TODO → DONE
+- **Decision:** **CONDITIONAL PASS**
+- **Validation result:** Re-check confirms all prior TPA-016 P0 blockers are fixed post-TPA-026 (compile conflict, missing arc-solver imports, enemy damage/death path, Player-tag null dereference).
+- **Conditions recorded:** Close remaining P1 system risks (2D/3D physics mismatch; boss phase timing enforcement gap) and execute targeted Unity regression smoke before external playtest/promo lock.
+- **Artifact published:** `planning/qa-playtest-signoff.md`
+
 ## TPA-019 comms update
 
 - **Timestamp:** Tue 2026-03-03 22:57 PST
