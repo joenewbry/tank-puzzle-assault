@@ -1,8 +1,8 @@
 # Morning Handoff — 2026-03-04
 
-**Timestamp:** Wed 2026-03-04 01:21 PST  
+**Timestamp:** Wed 2026-03-04 01:28 PST  
 **Owner:** PM (overnight manager log)  
-**Repo:** `main` @ `3ee65a6`
+**Repo:** `main` @ `8e43bc7`
 
 ---
 
@@ -13,46 +13,51 @@
   - `planning/single-player-cutover-plan.md`
   - `docs/design/single-player-campaign-core.md`
   - `docs/design/single-player-level-blueprints.md` (L1–L12 + deterministic L1–L3 blockout instructions)
-- Prior engineering baseline + hotfix artifacts are present (core scripts, QA hotfix pass, and conditional signoff docs).
-- Overnight PM reporting artifacts updated:
+- Midnight PM execution update has been published:
+  - `planning/pm-updates/pm-midnight-status-2026-03-04.md`
+- Overnight PM reporting artifacts are now current:
   - `planning/overnight-execution-checklist-2026-03-04.md`
   - `planning/pm-updates/morning-handoff-2026-03-04.md` (this file)
 
 ## 2) What is playable now
 
-- **Playable with manual Unity scene setup** using existing script foundation and setup docs:
-  - `docs/implementation/first-playable-setup.md`
-- Current repo includes core gameplay/AI/combat scripts under `Unity/Assets/Scripts/*` and progression data under `Unity/Assets/Resources/Data/MapProgressionData.json`.
-- **Not yet turnkey-playable as L1–L3 scenes from source control**:
-  - `Unity/Assets/Scenes/` has no committed L1/L2/L3 scenes.
-  - `Unity/Assets/Prefabs/` has no committed player/enemy prefabs.
+- **Live Unity project status (external working project):**
+  - Source tracked in midnight update: `/Users/joe/dev/TankPuzzleAssult`
+  - Unity project opens.
+  - Scenes `Map1-1`, `L1_FirstArc`, `L2_GateByDemolition`, `L3_CrossfireCapture` exist and are in Build Settings.
+- **Current limitation:** play-mode is not yet stable for a clean demo loop because runtime input exceptions are firing (new Input System enabled while movement router uses legacy input calls).
+- **Repo status:** this docs repo still does not contain committed L1/L2/L3 scene/prefab assets under `Unity/Assets/Scenes` and `Unity/Assets/Prefabs`.
 
 ## 3) Blockers (if any)
 
-1. **No committed SP_L1/SP_L2/SP_L3 Unity scenes** yet (blockout is currently documented, not assembled in project assets).
-2. **Objective auto-wire/game-mode logic for L1–L3 is not implemented in committed scripts** (relay/gate/capture completion flows not yet present).
-3. **UI/HUD + menu/settings/keybind entry points remain unimplemented** in committed Unity assets.
-4. **Unity smoke/compile validation was not executed in this overnight PM pass** (no new Unity batch run evidence checked in).
-5. **Run instruction mismatch risk:** `README.md` references `Assets/Scenes/Main.unity`, but that scene is not committed in current tree.
+1. **Input stack mismatch (highest blocker)**
+   - `activeInputHandler: 1` (new Input System) vs `DemoInputRouter` using legacy `UnityEngine.Input.GetKey(...)`.
+   - Blocks reliable in-play controls despite scene availability.
+
+2. **Objective progression wiring incomplete in playable scenes**
+   - Midnight report indicates objective scripts are present (`ObjectiveTracker`, `ObjectiveRelayTarget`) but not fully wired through L1/L2/L3 mission flow.
+
+3. **Encounter quality gap for morning demo**
+   - Enemy combat/AI behavior is not fully tuned/wired in generated blockout scenes.
+
+4. **Repo parity gap**
+   - Scene/prefab outputs exist in live Unity working project but are not yet mirrored/committed into this repo tree.
 
 ## 4) First 30-minute morning action plan
 
-1. **0–10 min: open + verify editor baseline**
-   - Open `Unity/` project in Unity 2022.3 LTS.
-   - Confirm compile status in Console.
-   - Record pass/fail evidence in a short PM update note.
+1. **0–10 min: unblock controls immediately**
+   - In Unity Player Settings, switch to input compatibility mode (or migrate `DemoInputRouter` to new Input System).
+   - Re-test `Map1-1` and `L1_FirstArc` for 5-minute smoke without repeated input exceptions.
 
-2. **10–20 min: establish committed playable anchor scene**
-   - Create and commit `SP_L1_FirstArc` scene with:
-     - player spawn,
-     - enemy spawns,
-     - relay objective placeholders,
-     - win/fail trigger hookup to `GameLoopManager`.
+2. **10–20 min: complete objective wiring for one anchor level**
+   - Wire and validate L1 objective flow end-to-end (relay completion -> win-state event).
+   - Confirm fail/retry still works and logs clean transitions in `GameLoopManager`.
 
-3. **20–30 min: unblock follow-on execution**
-   - Create owner assignments for:
-     - L2/L3 scene assembly,
-     - objective scripts (relay/gate/capture),
-     - minimum HUD win/fail messaging,
-     - settings/menu entry stub.
-   - Update checklist + handoff doc with exact owners and ETA windows.
+3. **20–30 min: create repo parity and execution ownership**
+   - Commit/push generated L1/L2/L3 scenes and required prefabs/editor scripts into this repo.
+   - Assign owners + ETAs for:
+     - L2/L3 objective wiring,
+     - enemy behavior tuning pass,
+     - minimal HUD win/fail text,
+     - settings/menu entry stub,
+     - Unity batch smoke evidence note.
