@@ -16,22 +16,32 @@ The v1 release targets:
 
 Core promise: *"Think like a puzzle player, act like a tank commander."*
 
+## Current Priority Mode (GM Direction Update — 2026-03-03)
+
+**Priority mode is now single-player campaign first.** This direction supersedes any earlier sequencing that treated multiplayer as a co-equal v1 gate.
+
+- **Primary execution target:** ship a polished, playable single-player puzzle campaign loop first (on top of existing prototype systems).
+- **Content strategy:** leverage already imported world/environment assets as the default content source for campaign levels; only create net-new assets when blockers are identified.
+- **Multiplayer policy:** keep architecture compatibility in mind, but defer multiplayer completion/hardening work (session flow, sync robustness, balance/perf tuning, broader player counts) to a later phase after campaign MVP acceptance.
+- **Planning implication:** implementation and QA sequencing should prioritize campaign progression clarity, puzzle readability, and single-player stability before returning to multiplayer hardening.
+
 ---
 
 ## 2) Goals and Success Criteria
 
 ## Product Goals
 1. Deliver a complete 3-map progression campaign with escalating difficulty.
-2. Support both solo and multiplayer sessions with stable match flow.
-3. Provide replayable challenge through scoring, star ratings, and class/power-up variety.
-4. Ship platform-appropriate controls, settings, and performance profiles on web/mobile/Xbox.
+2. Ship a stable, polished single-player puzzle campaign loop first.
+3. Preserve multiplayer-compatible architecture while deferring multiplayer hardening to a later phase.
+4. Provide replayable challenge through scoring, star ratings, and class/power-up variety.
+5. Ship platform-appropriate controls, settings, and performance profiles on web/mobile/Xbox.
 
-## Success Criteria (v1)
+## Success Criteria (v1 Campaign MVP)
 - 15 playable nodes (3 maps x 5 nodes) with clear unlock progression.
 - 2 player tank classes + red AI variants + 1 final boss class implemented.
-- Multiplayer functional for at least 2-player sessions (host-authoritative).
-- Core menus/settings complete and platform-compliant.
-- QA/playtest sign-off on puzzle clarity, fairness, and stability.
+- Core menus/settings complete and platform-compliant for single-player campaign flow.
+- QA/playtest sign-off on puzzle clarity, fairness, and stability in single-player progression.
+- Multiplayer hardening backlog is explicitly defined, prioritized, and scheduled for post-campaign-MVP phase.
 
 ---
 
@@ -62,6 +72,7 @@ Both classes must be viable across all core levels with distinct but balanced so
 - AI behavior should combine positional pressure and puzzle interaction (not just raw DPS).
 
 ## 3.4 Multiplayer
+- **Current priority mode:** deferred to post-campaign-MVP hardening phase.
 - Host-authoritative match simulation for gameplay-critical actions.
 - MVP multiplayer target: **2-player co-op**, extensible to 3–4 players.
 - Session support includes create/join flow, scene sync, match-end summary.
