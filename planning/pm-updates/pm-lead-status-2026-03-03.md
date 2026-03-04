@@ -147,3 +147,11 @@
   - `docs/launch/promotion-plan.md`
 - **Workflow update:** `planning/workflow.csv` row for TPA-018 updated with DONE state, completion timestamp, and concise delivery notes.
 - **Notes:** Promotion planning package now covers positioning/audiences, channel strategy (arcade/social/communities), prelaunch-launch-post calendar, trailer+screenshot checklists, KPI targets/tracking cadence, and explicit link-share guidance for Joe at release readiness.
+
+## Post-midnight execution update
+
+- **Timestamp:** Wed 2026-03-04 01:20 PST
+- Live Unity check completed against `/Users/joe/dev/TankPuzzleAssult`.
+- Confirmed generated scene set now includes `Map1-1` plus `L1_FirstArc`, `L2_GateByDemolition`, and `L3_CrossfireCapture` (all in Build Settings).
+- Readiness: project opens in editor, but play-mode is currently blocked for reliable demo execution by input-system mismatch (`DemoInputRouter` legacy input calls vs `activeInputHandler: 1`) and incomplete objective/encounter wiring.
+- Detailed midnight brief published at: `planning/pm-updates/pm-midnight-status-2026-03-04.md`.
