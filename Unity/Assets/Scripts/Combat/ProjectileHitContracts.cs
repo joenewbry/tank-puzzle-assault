@@ -75,4 +75,9 @@ namespace TankPuzzleAssault.Combat
         int Priority { get; }
         float ModifyDamage(float currentDamage, ProjectileHitContext context);
     }
+
+    public interface IProjectileTeamProvider
+    {
+        int TeamId { get; }
+    }
 }
